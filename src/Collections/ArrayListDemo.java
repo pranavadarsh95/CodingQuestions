@@ -2,6 +2,7 @@ package Collections;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 
 public class ArrayListDemo {
@@ -43,8 +44,15 @@ public class ArrayListDemo {
 //        arrayList1.add(31);
 //        print(arrayList1);
 //        printUsingIterator(arrayList1);
+
 //        ArrayList<Integer> arrayList2 = new ArrayList<>(Arrays.asList(new Integer[]{1,2,3,4,5}));
 //        print(arrayList2);
+
+//        Integer a[] ={1,2,3,4,5};
+//        ArrayList<Integer> arrayList = new ArrayList<>();
+//        Collections.addAll(arrayList,a);
+//        print(arrayList);
+
 //        ArrayList<Integer> arrayList3 = new ArrayList<>(Arrays.asList(11,12,13,14,15));
 //        print(arrayList3);
 
@@ -142,8 +150,14 @@ class ArrayListOfArrayList {
     }
 
     void initialiseArrayListOfArrayList() {
-        ArrayList<Integer> arrayList1 = new ArrayList<Integer>();
-        arrayList1.addAll(Arrays.asList(134, 437, 84, 3, 9812));
+//        ArrayList<Integer> arrayList1 = new ArrayList<Integer>();
+//        arrayList1.addAll(Arrays.asList(134, 437, 84, 3, 9812));
+//        or,
+        ArrayList<Integer> arrayList1 = new ArrayList<Integer>(Arrays.asList(134, 437, 84, 3, 9812));
+
+//        Integer a[] = {1,2,3,45};
+//        ArrayList<Integer> abcd = new ArrayList<>();
+//        abcd.addAll(Arrays.asList(a));
 
         ArrayList<Integer> arrayList2 = new ArrayList<Integer>();
         arrayList2.addAll(Arrays.asList(564, 7, 634, 903, 172));
