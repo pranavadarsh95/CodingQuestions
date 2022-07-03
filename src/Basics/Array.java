@@ -1,10 +1,8 @@
 package Basics;
 
-import java.util.Arrays;
-
 public class Array {
 
-    public static void main(String[] args) {
+    public static void main(StringDemo[] args) {
        // Declare Array
         int array[][] = new int[3][];
 
