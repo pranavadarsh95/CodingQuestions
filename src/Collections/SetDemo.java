@@ -17,7 +17,6 @@ public class SetDemo {
             System.out.print(i + " ");
         }
         System.out.println();
-
     }
 
     static void printUsingIterator(Set<Integer> set) {
@@ -57,6 +56,7 @@ public class SetDemo {
 //        System.out.println(set2.isEmpty());
 
         //********* we can't change any element of set because there is no index present in set *********
+        
     }
 
 }

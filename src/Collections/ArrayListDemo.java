@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 
-public class ArrayListDemo {
+public class   ArrayListDemo {
 
     static void print(ArrayList<Integer> arrayList) {
 
@@ -36,14 +36,14 @@ public class ArrayListDemo {
 
     public static void main(String[] args) {
         //ADD
-//        ArrayList<Integer> arrayList1 = new ArrayList<>(5);
-//        arrayList1.add(34);
-//        arrayList1.add(4);
-//        arrayList1.add(7);
-//        arrayList1.add(94);
-//        arrayList1.add(31);
+        ArrayList<Integer> arrayList1 = new ArrayList<>(5);
+        arrayList1.add(34);
+        arrayList1.add(4);
+        arrayList1.add(7);
+        arrayList1.add(94);
+        arrayList1.add(31);
 //        print(arrayList1);
-//        printUsingIterator(arrayList1);
+        printUsingIterator(arrayList1);
 
 //        ArrayList<Integer> arrayList2 = new ArrayList<>(Arrays.asList(new Integer[]{1,2,3,4,5}));
 //        print(arrayList2);
@@ -57,12 +57,12 @@ public class ArrayListDemo {
 //        print(arrayList3);
 
         //SET
-//        arrayList1.set(2,78);
-//        print(arrayList1);
+        arrayList1.set(2,78);
+        print(arrayList1);
 
         //ADD At SPECIFIC POSITION
-//        arrayList1.add(3,53);
-//        print(arrayList1);
+        arrayList1.add(3,53);
+        print(arrayList1);
 
         //Remove
 //        arrayList1.remove(Integer.valueOf(94));
@@ -76,13 +76,13 @@ public class ArrayListDemo {
 //        if(arrayList1.contains(element)){
 //            System.out.println("Element "+element+" "+"found");
 //        } else {
-//            System.out.println("Element "+element+" "+"Not Fund");
+//            System.out.println("Element "+element+" "+"Not Found");
 //        }
 
         //Remove all elements but arrayList will exist with 0 elements
-//        arrayList1.clear();
+        arrayList1.clear();
 //
-//        System.out.println("Size of Arraylist "+arrayList1.size());
+        System.out.println("Size of Arraylist "+arrayList1.size());
 
         //Array of ArrayList
 //        ArrayofArrayList arrayofArrayList = new ArrayofArrayList(3);
@@ -91,10 +91,10 @@ public class ArrayListDemo {
 //        arrayofArrayList.printArrayofArrayList();
 
         //ArrayList of ArrayList
-        ArrayListOfArrayList arrayListOfArrayList = new ArrayListOfArrayList();
-        arrayListOfArrayList.setArrayListOfArrayList();
-        arrayListOfArrayList.initialiseArrayListOfArrayList();
-        arrayListOfArrayList.printArrayListOfArrayList();
+//        ArrayListOfArrayList arrayListOfArrayList = new ArrayListOfArrayList();
+//        arrayListOfArrayList.setArrayListOfArrayList();
+//        arrayListOfArrayList.initialiseArrayListOfArrayList();
+//        arrayListOfArrayList.printArrayListOfArrayList();
     }
 }
 

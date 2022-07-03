@@ -8,8 +8,12 @@ public class QuickSort {
 
         int j=x-1;
 
+//        Note:- the numbers between indices (j to i) would be greater than pivot element(a[y])
+//        and j will always point to lesser than pivot or at index -1, so need to move 1 step forward and swap with
+//        smaller value which is pointed by ith index
+
         for(int i=x;i<y;i++){
-            if(a[i]<pivot){
+            if(a[i]<=pivot){
                 ++j;
                 swap(a,i,j);
             }
@@ -42,7 +46,7 @@ public class QuickSort {
     }
 
     public static void main(String[] args) {
-        int a[] = {76,89,23,45,12,90,34,87,3,5,1,90,345,27};
+        int a[] = {89,76,89,23,45,12,90,34,87,23,3,5,1,90,345,27,89};
         print(a);
         System.out.println("After Performing Quick Sort");
 

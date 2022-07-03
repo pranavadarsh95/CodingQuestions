@@ -1,6 +1,5 @@
 package Collections;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -70,7 +69,7 @@ public class LinkedListDemo {
         // offer() -> add element to the end of linkedlist
         // poll() -> remove first element from the linkedlist
 
-        // view last element
+        // view first element
         System.out.println(linkedList.peek());
 
         // add elements

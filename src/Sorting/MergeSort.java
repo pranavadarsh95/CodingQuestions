@@ -11,12 +11,12 @@ public class MergeSort {
         int second[] = new int[sSize];
         int k=0;
 
-        for(int i=x;i<=(x+fSize-1);i++){
+        for(int i=x;i<=mid;i++){
             first[k++] = a[i];
         }
         k=0;
 
-        for(int i=mid+1;i<=(sSize+mid);i++){
+        for(int i=mid+1;i<=y;i++){
             second[k++] = a[i];
         }
 

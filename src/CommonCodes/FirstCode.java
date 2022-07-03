@@ -40,18 +40,20 @@ public class FirstCode {
         }
 
         System.out.println();
-        Arrays.sort(m,new Comparator<Matrix>(){
-           public int compare(Matrix a,Matrix b){
-               /* If a < b then already increasing order so don't do any thing return -1
-                  If a > b means need to change as increasing order then return 1(chota ko pehle karo)
-                */
+//        Arrays.sort(m,new Comparator<Matrix>(){
+//           public int compare(Matrix a,Matrix b){
+//               /* If a < b then already increasing order so don't do any thing return -1
+//                  If a > b means need to change as increasing order then return 1(chota ko pehle karo)
+//                */
+//
+//              if((a.col+a.row) < (b.col+b.row))
+//                  return -1;
+//              else
+//                  return 1;
+//           }
+//        });
 
-              if((a.col+a.row) < (b.col+b.row))
-                  return -1;
-              else
-                  return 1;
-           }
-        });
+
 
         for(Matrix t:m){
             t.print();
