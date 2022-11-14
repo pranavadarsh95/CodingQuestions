@@ -8,6 +8,7 @@ public class StringDemo {
         name2 = "pranav";
 
         System.out.println(name);
+
         System.out.println(name2);
         name = "RatHi";
         System.out.println(name);

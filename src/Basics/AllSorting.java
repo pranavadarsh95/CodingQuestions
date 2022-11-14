@@ -13,17 +13,103 @@ public class AllSorting {
         .heap - best(o(nlogn)) worst(o(nlogn))
         */
 
-        int[] arr = {5, 24, 3, 12, 1};
+        int[] arr = {5, 24, 3, 12, 1, 8};
         int n = arr.length;
 //        bubbleSort(arr,n);
 //        print(arr);
-        selectionSort(arr, n);
-        print(arr);
-//        insertionSort(arr, n);
+//        selectionSort(arr, n);
 //        print(arr);
+//          insertionSort(arr, n);
+//          print(arr);
+          mergesort(arr, 0 , n-1);
+          print(arr);
+          quicksor(arr, 0, n-1);
+    }
+
+    private static void quicksor(int[] arr, int l, int r) {
+        if(l < r){
+            int pivot = quick(arr, l, r);
+            quicksor(arr, l, pivot-1);
+            quicksor(arr, pivot+1, r);
+        }
+    }
+
+    private static int quick(int[] arr, int l, int r) {
+        int p = l-1;
+        int pivot = arr[r];
+        for(int q = l; q < r; q++){
+            if(arr[q]<=pivot){
+                ++p;
+                swap(arr, p, q);
+            }
+        }
+        swap(arr, p+1, r);
+        return p+1;
+    }
+
+    private static void mergesort(int[] arr, int l, int r) {
+        if(l<r){
+            int mid = l + (r-l)/2;
+            mergesort(arr, l, mid);
+            mergesort(arr, mid+1, r);
+            merge(arr, l, mid, r);
+        }
+    }
+
+    private static void merge(int[] arr, int l, int mid, int r) {
+        int leftS = mid - l + 1;
+        int rightS = r - mid;
+
+        int a[] = new int[leftS];
+        int b[] = new int[rightS];
+
+        int p=0;
+        for(int i=l; i<=mid; i++){
+            a[p++] = arr[i];
+        }
+        p=0;
+        for(int i=mid+1; i<=r; i++){
+            b[p++] = arr[i];
+        }
+
+       int i=0, j=0,k=l;
+       while(i<leftS && j<rightS){
+           if(a[i] < b[j]){
+               arr[k++] = a[i];
+               ++i;
+           }
+           else {
+               arr[k++] = b[j];
+               ++j;
+           }
+       }
+
+       if(i<leftS) {
+           while (i < leftS) {
+               arr[k++] = a[i];
+               ++i;
+           }
+       }
+
+       if(j<rightS) {
+           while (j < rightS) {
+               arr[k++] = b[j];
+               ++j;
+           }
+       }
     }
 
     private static void insertionSort(int[] arr, int n) {
+        int j, key;
+        for(int i=1; i<n; i++){
+            j = i-1;
+            key = arr[i];  // if we are not keeping iTh value in key then after arr[j+1] = arr[j], arr[i] value would be overright
+            while(j >= 0 && arr[j] > key){
+                arr[j+1] = arr[j];
+                j = j-1;
+            }
+            arr[j+1] = key;
+        }
     }
 
     private static void selectionSort(int[] arr, int n) {
@@ -97,7 +183,7 @@ public class AllSorting {
         2 => 3 5 12 1 24
         3 => 3 5 1 12 24
 
-        we got 3nd max ele at the 3nd last pos
+        we got 3rd max ele at the 3rd last pos
         1 => 3 5 1 12 24
         2 => 3 1 5 12 24
 
