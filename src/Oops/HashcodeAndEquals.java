@@ -44,13 +44,13 @@ class Employee {
     }
 
     // commented
-//      @Override
-//        public int hashCode() {
-//            int result=17;
-//            result=31*result+age;
-//            result=31*result+(name!=null ? name.hashCode():0);
-//            return result;
-//        }
+      @Override
+        public int hashCode() {
+            int result=17;
+            result=31*result+age;
+            result=31*result+(name!=null ? name.hashCode():0);
+            return result;
+        }
 
 }
 

@@ -2,6 +2,15 @@ package CommonCodes;
 
 public class KthSmallestElement {
 
+    /*
+     * Important Points
+     * As we want Kth Smallest element means we need numbers in Increasing order (smaller to larger) ex:- 8,9,10 so on...
+     * j which points before l(starting of array) at the start
+     * before j or equal to it elements would be smaller than pivot
+     * so, i will stop for swap only when it finds element smaller or equal than pivot otherwise it will keep moving
+     *
+     * Note:- Time Complexity: O(N2) in worst case and O(N) on average
+     * */
 
     private static int partition(int[] a, int l, int h) {
         int pivot = a[h];

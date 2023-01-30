@@ -2,6 +2,16 @@ package CommonCodes;
 
 public class KthLargestElement {
 
+    /*
+    * Important Points
+    * As we want Kth Largest element means we need numbers in decreasing order (larger to smaller) ex:- 10,9,8 so on...
+    * j which points before l(starting of array) at the start
+    * before j or equal to it elements would be larger than pivot
+    * so, i will stop for swap only when it finds element larger than pivot otherwise it will keep moving
+    *
+    * Note:- Time Complexity: O(N2) in worst case and O(N) on average
+    * */
+
     private static int partition(int[] a, int l, int h) {
         int pivot = a[h];
         int j = l-1;

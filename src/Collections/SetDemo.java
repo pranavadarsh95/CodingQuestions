@@ -2,6 +2,8 @@ package Collections;
 
 import java.util.*;
 
+// Note:- storing set into list
+// List<?> list = new ArrayList<>(set);
 public class SetDemo {
 
     static void print(Set<Integer> set) {

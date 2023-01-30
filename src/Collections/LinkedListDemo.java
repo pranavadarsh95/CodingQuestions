@@ -4,6 +4,12 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+// Must do :- https://leetcode.com/problems/add-two-numbers/description/
+// Must do :- https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/
+// https://leetcode.com/problems/intersection-of-two-linked-lists/description/
+// https://leetcode.com/problems/linked-list-cycle/description/
+// https://practice.geeksforgeeks.org/problems/flattening-a-linked-list/1
+
 public class LinkedListDemo {
 
     static void print(LinkedList<Integer> linkedList) {

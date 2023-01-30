@@ -143,6 +143,16 @@ public class MapDemo {
         // Check if map contains given value
 //        System.out.println(map.containsValue(9560));
 
+        // returns maximum element value present in map
+//        System.out.println(Collections.max(map.values()));
+
+        /*
+        Collections.max(abc.values())
+        Collections.min(abc.values())
+        Collections.max(abc.keys())
+        Collections.max(abc.keys())
+         */
+
         // Check if map contains any element or not
 //        System.out.println(map.isEmpty());
 

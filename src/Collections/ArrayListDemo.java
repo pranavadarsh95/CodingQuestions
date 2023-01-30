@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 
+// Note:- storing set into list
+// List<?> list = new ArrayList<>(set);
 public class   ArrayListDemo {
 
     static void print(ArrayList<Integer> arrayList) {

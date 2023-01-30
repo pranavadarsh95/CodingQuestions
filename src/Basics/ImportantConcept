@@ -1,0 +1,108 @@
+Time Complexity:- https://www.freecodecamp.org/news/big-o-cheat-sheet-time-complexity-chart/
+======================================================================================
+Rate limitter:-
+https://leetcode.com/discuss/interview-question/system-design/124558/Uber-or-Rate-Limiter
+
+======================================================================================
+Convert String to charArray then sort then store it in New String
+
+char tempArray[] = str.toCharArray();
+Arrays.sort(tempArray);
+String sortedStr = String.valueOf(tempArray);
+
+======================================================================================
+Declare and initialize Map which has Key=> String and value => ArrayList<String>
+
+str is String
+Map<String,ArrayList<String>> map  = new HashMap<>();
+map.put(sortedStr,new ArrayList<String>(Arrays.asList(str)));
+
+======================================================================================
+Declare ArrayList within ArrayList and declare memory for internal ArrayList as
+public class BfsPart2 {
+    int v;
+    ArrayList<ArrayList<Integer>> adjList;
+
+    BfsPart2(int v) {
+        this.v = v;
+        adjList = new ArrayList<>();
+
+        for (int i = 0; i < v; i++) {
+            adjList.add(i, new ArrayList<>());
+        }
+    }
+ }
+
+======================================================================================
+SubSequences vs Subarray [Both should have order] striver recurssion lecture 6
+
+a[] = {1,2,3}
+
+SubSequences (Contiguous/non-contiguous) 1,2,3,1 2,2 3,1 3,1 2 3
+SubArray (Contiguous) 1,2,3,1 2,1 3(NO),2 3 ,1 2 3
+
+
+======================================================================================
+If we have given ArrayList<int[]> output;
+1) if Asked for last element of arraylist based 1st index of array then
+output.get(output.size()-1)[1];
+2) if Asked to update that element that same as above
+Ex:-
+output.get(output.size()-1)[1] = anyValue;
+
+3) If we have to return "int[][]" from method whereas we have
+ArrayList<int[]> output = new ArrayList<int[]>();
+then
+ return output.toArray(new int[output.size()][]);
+
+======================================================================================
+Comparator vs Comparable and BinarySearch and Sort methods
+https://docs.google.com/document/d/1REFGrpRjfMp15TsvQg4s2n5vBMm97qsY9UK9lD1GDdM/edit
+
+for a list :-
+Collections.sort(list, Collections.reverseOrder());
+for an array :-
+Arrays.sort(array, Collections.reverseOrder());
+======================================================================================
+Store array into 2*size to make it circular array
+ for (int i = 0; i < n * 2; i++) {
+            temp[i] = nums[i % n];
+        }
+======================================================================================
+when number as n = 123 given and need to put in array from starting to last index as per digit
+ void fillArrayList(int n, ArrayList<Integer> digits){
+        if(n<=0) return;
+        int d = n % 10;
+        fillArrayList(n/10,digits);
+        digits.add(d);
+    }
+======================================================================================
+Collections.sort(list.subList(0,3)); // Sorting a part of list
+Collections.reverse(arrayList);
+======================================================================================
+Dutch national Flag Algorithm ex:- https://www.youtube.com/watch?v=oaVa-9wmpns&list=PLgUwDviBIf0rPG3Ictpu74YWBQ1CaBkm2&index=4
+https://leetcode.com/problems/sort-colors/submissions/877393842/
+
+======================================================================================
+Convert row to column or vice-versa for 2D matrix
+ for(int i=0;i<rowNum;i++){
+                for(int j=0;j<i;j++){
+                    int t = matrix[j][i];
+                    matrix[j][i] = matrix[i][j];
+                    matrix[i][j] = t;
+                }
+            }
+======================================================================================
+Power function in java
+public static double pow(double a, double b)
+Parameter:
+a : this parameter is the base
+b : this parameter is the exponent.
+Return :
+This method returns a^b
+Math.power(a,b);
+======================================================================================
+If we need to fill any 2D array with any default value
+// note:- here a represent each row of 2d array
+Arrays.stream(array_name).forEach(a-> Arrays.fill(a,-1));
+======================================================================================

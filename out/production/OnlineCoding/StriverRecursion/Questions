@@ -1,0 +1,23 @@
+1) Number of Subsequences
+
+2) Printing All possible Subsequences whose sum is K
+3) IS there any Subsequence whose Sum is K (True/ false)
+4) Count Number of Subsequences Whose Sum is K (Count 1 or 0)
+
+5) Combination Sum https://leetcode.com/problems/combination-sum/
+
+6) Combination Sum 2 https://leetcode.com/problems/combination-sum-ii/description/
+  [It has two solutions
+  1. pick and non-pick but gives TLE error
+  2. for loop from i=index to n-1 after sorting to get rid of duplicate combination ]
+
+7) Subset Sum https://practice.geeksforgeeks.org/problems/subset-sums2234/1
+  [Pick and non-pick problem]
+
+8)Subset Sum 2 https://leetcode.com/problems/subsets-ii/description/
+for loop from i=index to n-1 after sorting
+
+9) Print All Permutation of String/Array [Approach - 1]
+   https://leetcode.com/problems/permutations/description/
+
+10)

@@ -1,8 +1,5 @@
 package CommonCodes;
 
-import java.util.Arrays;
-import java.util.Comparator;
-
 class Matrix{
     int row;
     int col;
@@ -12,7 +9,7 @@ class Matrix{
         this.col = col;
     }
 
-    void getData(int row,int col){
+    void setData(int row, int col){
         this.row = row;
         this.col = col;
     }
