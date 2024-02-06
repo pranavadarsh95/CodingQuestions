@@ -1,13 +1,10 @@
 package Collections;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Iterator;
+import java.util.*;
 
 // Note:- storing set into list
 // List<?> list = new ArrayList<>(set);
-public class   ArrayListDemo {
+public class  ArrayListDemo {
 
     static void print(ArrayList<Integer> arrayList) {
 
@@ -27,6 +24,7 @@ public class   ArrayListDemo {
 
     static void printUsingIterator(ArrayList<Integer> arrayList) {
         Iterator<Integer> iterator = arrayList.iterator();
+//        ListIterator<Integer> iterator1 = arrayList.listIterator();
 
         System.out.println("Elements printed using Iterator:- ");
 
@@ -34,10 +32,17 @@ public class   ArrayListDemo {
             System.out.print(iterator.next() + " ");
         }
         System.out.println();
+
+        //using ListIterator
+     /*   while(iterator1.hasNext()){
+            System.out.println("Next element "+iterator1.next());
+            if(iterator1.hasPrevious())
+                System.out.println("Previous element "+iterator1.previous());
+        }*/
     }
 
     public static void main(String[] args) {
-        //ADD
+        //ADD y default ity holds 16 element and when it reaches at 75% (means at 12 it doubles the last value i.e 16*2 = 32)
         ArrayList<Integer> arrayList1 = new ArrayList<>(5);
         arrayList1.add(34);
         arrayList1.add(4);
@@ -59,17 +64,18 @@ public class   ArrayListDemo {
 //        print(arrayList3);
 
         //SET
-        arrayList1.set(2,78);
+        arrayList1.set(2,78);// .set(position,value);
         print(arrayList1);
 
         //ADD At SPECIFIC POSITION
         arrayList1.add(3,53);
         print(arrayList1);
 
-        //Remove
+        //Removing element
 //        arrayList1.remove(Integer.valueOf(94));
 //        print(arrayList1);
 
+        // Removing index based element
 //        arrayList1.remove(2);
 //        print(arrayList1);
 

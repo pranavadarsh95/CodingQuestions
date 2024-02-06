@@ -15,4 +15,4 @@ when number as n = 123 given and need to put in array from starting to last inde
     And Collections.sort(list.subList(0,3)); // Sorting a part of list
 3) asked in bharatpe https://leetcode.com/problems/next-greater-element-ii/description/
 4) https://www.codingninjas.com/codestudio/problems/1112581?topList=striver-sde-sheet-problems&utm_source=striver&utm_medium=website&leftPanelTab=1
-5) https://practice.geeksforgeeks.org/problems/maximum-distinct-elements-after-removing-k-elements5906/1
+5) https://practice.geeksforgeeks.org/problems/maximum-distinct-elements-after-removing-k-elements5906/1 [Concept]

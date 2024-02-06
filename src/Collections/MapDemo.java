@@ -1,6 +1,7 @@
 package Collections;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /*
 A HashMap is implemented as a Hash table, a TreeMap is implemented as a Red-Black Tree,
@@ -88,6 +89,20 @@ public class MapDemo {
 
 //        map = new TreeMap<>();
 
+        // https://www.geeksforgeeks.org/difference-hashmap-concurrenthashmap/
+        //In HashMap, null values are allowed for key and values,
+        // whereas in ConcurrentHashMap null value is not allowed for key and value,
+        // otherwise we will get Run-time exception saying NullPointerException.
+
+        // HashMap is non-Synchronized in nature i.e. HashMap is not Thread-safe whereas ConcurrentHashMap is Thread-safe in nature.
+        //HashMap performance is relatively high because it is non-synchronized in nature and any number of threads can perform simultaneously.
+        // But ConcurrentHashMap performance is low sometimes because sometimes Threads are required to wait on ConcurrentHashMap.
+        //While one thread is Iterating the HashMap object,
+        // if other thread try to add/modify the contents of Object then
+        // we will get Run-time exception saying ConcurrentModificationException.
+        // Whereas In ConcurrentHashMap we wont get any exception while performing any modification at the time of Iteration.
+
+//        map = new ConcurrentHashMap<>(); // IMP
 
         map.put(3, 890);
         map.put(2, 9560);
@@ -145,12 +160,13 @@ public class MapDemo {
 
         // returns maximum element value present in map
 //        System.out.println(Collections.max(map.values()));
+//        System.out.println(Collections.max(map.keySet()));
 
         /*
         Collections.max(abc.values())
         Collections.min(abc.values())
-        Collections.max(abc.keys())
-        Collections.max(abc.keys())
+        Collections.max(abc.keySet())
+        Collections.max(abc.keySet())
          */
 
         // Check if map contains any element or not

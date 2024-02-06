@@ -72,14 +72,14 @@ public class QueueDemo {
         //    printWithoutIterator(queue);
         printWithIterator(queue);
 
-        // to print top element of the Queue
+        // to print top element of the Queue means (towards front side)
         System.out.println("Top Element:- " + queue.peek());
 
         // remove first element from queue
         System.out.println("Remove first Element:- " + queue.poll());
         printWithIterator(queue);
 
-        //Add element at the last
+        //Add element at the last (rear side)
         System.out.println("Add Element At the Last:- " + queue.offer(70));
         printWithIterator(queue);
 
@@ -92,7 +92,7 @@ public class QueueDemo {
         You can remove elements from the Queue until you reach the needed one. You can re-add the removed elements at
         the end of the queue or put them in a different queue (and add the rest after you reached the needed element).
          */
-        // System.out.println(queue.get(2));
+//         System.out.println(queue.get(2));
 
     }
 

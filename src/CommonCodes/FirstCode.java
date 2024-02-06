@@ -1,5 +1,7 @@
 package CommonCodes;
 
+import java.util.Arrays;
+
 class Matrix{
     int row;
     int col;
@@ -50,6 +52,7 @@ public class FirstCode {
 //           }
 //        });
 
+        Arrays.sort(m,(a,b)->(a.col+a.row) > (b.col+b.row)? 1:-1);
 
 
         for(Matrix t:m){

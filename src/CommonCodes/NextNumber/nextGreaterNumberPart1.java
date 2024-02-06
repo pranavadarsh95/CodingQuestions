@@ -12,6 +12,10 @@ package CommonCodes.NextNumber;
 //Input: n = "534976"
 //Output: "536479"
 
+//beautiful example
+//Input:- 15763
+//output:- 16357
+
 // https://www.geeksforgeeks.org/find-next-greater-number-set-digits/
 
 // practice:- https://practice.geeksforgeeks.org/problems/next-permutation/0

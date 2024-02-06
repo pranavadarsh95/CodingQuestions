@@ -3,7 +3,7 @@ package Basics;
 import java.util.Iterator;
 
 // T is a placeholder
-public class OurGenericList<T> implements Iterable<T>{
+class OurGenericList<T> implements Iterable<T>{
 
     private T[] items;
     private int size;
@@ -46,6 +46,22 @@ public class OurGenericList<T> implements Iterable<T>{
         @Override
         public T next() {
             return list.items[index++];
+        }
+    }
+}
+
+public class GenericTest{
+    public static void main(String[] args) {
+        OurGenericList<Integer> ourList = new OurGenericList<>();
+
+        ourList.add(1);
+        ourList.add(2);
+        ourList.add(3);
+
+        Iterator<Integer> iterator = ourList.iterator();
+
+        while(iterator.hasNext()){
+            System.out.println(iterator.next());
         }
     }
 }

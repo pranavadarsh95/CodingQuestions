@@ -1,9 +1,10 @@
 package GraphProperties;
 
-import javafx.util.Pair;
-
 import java.util.LinkedList;
 import java.util.Queue;
+
+// https://leetcode.com/problems/path-with-maximum-gold/description/ [Path with maxm gold]
+// https://leetcode.com/problems/number-of-islands/description/
 
 class Store{
    private int first;
@@ -52,7 +53,7 @@ public class NoOfIslandsUsingBfs extends Graph {
         for(int i=0;i<m;i++) {
             for (int j = 0; j < n; j++) {
                 if((visited[i][j]==false) && mat[i][j] == 1) {
-                    countInslands(mat, visited, i, j, m, n);
+                    countIslands(mat, visited, i, j, m, n);
                     ++count;
                 }
             }
@@ -62,7 +63,7 @@ public class NoOfIslandsUsingBfs extends Graph {
 
     }
 
-    private static void countInslands(int[][] mat, boolean[][] visited, int x, int y, int m, int n) {
+    private static void countIslands(int[][] mat, boolean[][] visited, int x, int y, int m, int n) {
         Queue<Store> q = new LinkedList<>();
 
         q.add(new Store(x,y));

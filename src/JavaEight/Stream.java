@@ -1,2 +1,4 @@
-package JavaEight;public class Stream {
+package JavaEight;
+
+public class Stream {
 }

@@ -2,8 +2,12 @@ package CommonCodes;
 
 public class KthLargestElement {
 
+//     https://practice.geeksforgeeks.org/problems/maximum-distinct-elements-after-removing-k-elements5906/1
+
     /*
     * Important Points
+    * Always remember whatever we want i decides as (jispe rukega usko peeche phekega) if condition satisfied true,
+    *  j ko bhool jao because j opposite nature hoga i ka
     * As we want Kth Largest element means we need numbers in decreasing order (larger to smaller) ex:- 10,9,8 so on...
     * j which points before l(starting of array) at the start
     * before j or equal to it elements would be larger than pivot

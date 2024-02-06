@@ -9,9 +9,11 @@ public class FindFirstAndLastOccuranceOfSortedArray {
         int left, right;
         left = bs(a,0,n-1,x);
         while(left!=-1 && left>0 && a[left-1]==x)
-            left = bs(a,0,left-1,x);
-        right = bs(a,0,n-1,x);
+//            left = bs(a,0,left-1,x);
+            left = Arrays.binarySearch(a,0,left-1,x);
+            right = bs(a,0,n-1,x);
         while(right!=-1 && right<n-1 && a[right+1]==x)
+//            right = bs(a,right+1,n-1,x);
             right = bs(a,right+1,n-1,x);
         return new ArrayList<Long>(Arrays.asList((long)left,(long)right));
     }

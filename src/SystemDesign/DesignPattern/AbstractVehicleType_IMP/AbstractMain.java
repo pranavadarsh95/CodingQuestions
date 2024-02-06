@@ -5,6 +5,8 @@ import SystemDesign.DesignPattern.AbstractVehicleType_IMP.Factory.FactoryProvide
 import SystemDesign.DesignPattern.AbstractVehicleType_IMP.Vehicle.Vehicle;
 
 public class AbstractMain {
+
+    // Must read:- https://www.geeksforgeeks.org/abstract-factory-pattern/
     public static void main(String[] args) {
         int distance = 10;
 

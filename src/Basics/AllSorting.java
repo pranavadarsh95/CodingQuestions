@@ -2,6 +2,9 @@ package Basics;
 
 // To format code => ctrl+alt+shift+L
 
+import java.util.ArrayList;
+import java.util.Random;
+
 public class AllSorting {
     public static void main(String[] args) {
         /*
@@ -23,7 +26,8 @@ public class AllSorting {
 //          print(arr);
           mergesort(arr, 0 , n-1);
           print(arr);
-          quicksor(arr, 0, n-1);
+//         quicksor(arr, 0, n-1);
+//           print(arr);
     }
 
     private static void quicksor(int[] arr, int l, int r) {
@@ -35,6 +39,7 @@ public class AllSorting {
     }
 
     private static int quick(int[] arr, int l, int r) {
+        random(arr,l,r);
         int p = l-1;
         int pivot = arr[r];
         for(int q = l; q < r; q++){
@@ -47,15 +52,45 @@ public class AllSorting {
         return p+1;
     }
 
+    private static void random(int[] arr, int l, int r) {
+        Random rand = new Random();
+        int pivot = rand.nextInt(r-l)+l;
+        swap(arr,pivot,r);
+    }
+
     private static void mergesort(int[] arr, int l, int r) {
         if(l<r){
             int mid = l + (r-l)/2;
             mergesort(arr, l, mid);
             mergesort(arr, mid+1, r);
-            merge(arr, l, mid, r);
+//            merge(arr, l, mid, r);
+            merge_2(arr, l, mid+1, r);
         }
     }
 
+    private static void merge_2(int[] arr, int l, int mid, int r){
+        int leftS = l, rightS=mid;
+        ArrayList<Integer> al = new ArrayList<>();
+
+        while(leftS < mid && rightS <= r){
+            if(arr[leftS] < arr[rightS]){
+                al.add(arr[leftS++]);
+            } else {
+                al.add(arr[rightS++]);
+            }
+        }
+
+        while(leftS < mid){
+            al.add(arr[leftS++]);
+        }
+        while(rightS <= r){
+            al.add(arr[rightS++]);
+        }
+
+        for(int i=l; i<=r; i++){
+            arr[i] = al.get(i-l);
+        }
+    }
     private static void merge(int[] arr, int l, int mid, int r) {
         int leftS = mid - l + 1;
         int rightS = r - mid;
@@ -103,7 +138,7 @@ public class AllSorting {
         int j, key;
         for(int i=1; i<n; i++){
             j = i-1;
-            key = arr[i];  // if we are not keeping iTh value in key then after arr[j+1] = arr[j], arr[i] value would be overright
+            key = arr[i];  // if we are not keeping iTh value in key then after arr[j+1] = arr[j], arr[i] value would be override
             while(j >= 0 && arr[j] > key){
                 arr[j+1] = arr[j];
                 j = j-1;

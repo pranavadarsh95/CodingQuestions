@@ -18,7 +18,7 @@ class Node {
 
 public class LinkedList {
 
-    Node head;
+    Node head; // this is called has-a relationship
 
     public boolean searchKey(LinkedList list, int key) {
         Node curr = list.head;
@@ -169,6 +169,7 @@ public class LinkedList {
     }
 
     LinkedList reverseLinkedList(LinkedList list){
+//        Must see :- https://leetcode.com/problems/reverse-linked-list/
         Node curr = list.head;
 
         Node prev = null, next = curr;
@@ -184,6 +185,9 @@ public class LinkedList {
     }
 
     public static void main(String[] args) {
+
+        // find cycle https://leetcode.com/problems/linked-list-cycle-ii/
+
 
         LinkedList list = new LinkedList();
 

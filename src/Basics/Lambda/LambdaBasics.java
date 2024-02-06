@@ -1,2 +1,8 @@
-package Basics.Lambda;public class LambdaBasics {
+package Basics.Lambda;
+
+public class LambdaBasics {
+
+    public static void main(String[] args) {
+
+    }
 }
