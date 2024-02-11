@@ -86,7 +86,7 @@ There are 4 types of custom locks( which doesn't depends upon object like monito
    reentrant.lock();
    Inside finally -> reentrant.unlock();
 
-2) read-Write Lock [when Read is very high and write is lock then readWrite Lock is the solution]
+2) read-Write Lock [when Read is very high and write is low then readWrite Lock is the solution]
    [ Xclusive lock (Read, write) shared lock (only Read) ]
    If any thread has taken Xclusive lock then no other lock can be applied.
    ReadLock :- More than 1 thread can acquire the read lock
@@ -98,7 +98,7 @@ lock.readLock().lock();
 Inside finally -> lock.readlock().unlock();
 
 
-lock.writeLock().lock();
+lock.writeLock().lock(); 
 Inside finally -> lock.writeLock().unlock();
 3) stamped Lock (It supports ReadWrite Lock and Optimistic Lock both)
 
@@ -145,8 +145,11 @@ Concurrency can be achieved using
 3) Stamped
 4) ReadWrite
 5) Semaphores
-   *******Lock Free Mechanism:- [CAS Operation (Compare-and-Swap)] : Lock Free Operations (It provides thread safty)
+   *******Lock Free Mechanism [FASTER]:- [CAS Operation (Compare-and-Swap)] : Lock Free Operations (It provides thread safty)
+    VERY SPEIFIC USE CASE
    use case :- [Read the data value, Increment the value, update the value] ex:- counter++ ====> counter=counter+1;
+
+    CAS (Memory, Expected VAlue, New Value)
 
 1) AtomicInteger
 2) AtomicBoolean
