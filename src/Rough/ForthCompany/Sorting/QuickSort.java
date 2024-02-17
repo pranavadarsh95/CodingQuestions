@@ -1,9 +1,8 @@
-package Sorting;
+package Rough.ForthCompany.Sorting;
 
 import java.util.Arrays;
 
 public class QuickSort {
-
     public static void main(String[] args) {
         int a[] = {10, 20, 30, 4, 23, 12, 6, 890, 3, 25, 9};
 
@@ -15,7 +14,7 @@ public class QuickSort {
     static void quick(int a[], int start, int end){
         if(start < end){
             int pivot = quickSort(a, start, end);
-//            System.out.println(" pivot value as "+ pivot+" "+a[pivot]);
+            System.out.println(" pivot value as "+ pivot+" "+a[pivot]);
             quick(a, start, pivot - 1);
             quick(a, pivot + 1, end);
         }
@@ -43,5 +42,3 @@ public class QuickSort {
         a[y] = t;
     }
 }
-
-

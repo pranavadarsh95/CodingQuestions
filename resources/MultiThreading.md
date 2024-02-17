@@ -171,11 +171,17 @@ As variable is declared volatile so, it will read from L1 cache first then L2 ca
 --------------------What is ThreadPool???-------------------
 - It is a collection of threads(aka workers), which are available to perform the submitted tasks.
 - Once completed, worker thread get back to Thread Pool and wait for new task to assigned.
-- Means threads can be resused.
+- Means threads can be reused.
 
 How ThreadPool works??
--> when application submitting new task comes then Thread pool Executor checks for available thread from thread pool if any available then task is assigned to the thread.
+-> when application submitting new task (Ex:- main thread submitted a task to executor thread pool) then Thread pool Executor checks for available thread from thread pool
+if any thread is available then task is assigned to the thread.
 if not then task is pushed to the queue for waiting of any available thread.
+
+                    [########################################IMPORTANT########################################]
+We don't create number of threads because due to this context switching time will increase and cpu idle time will also increase 
+(So, Cpu instead of doing processing busy in context switching)
+[CONLUSION] using control over thread creation, excess context switching can be avoided.
 
 In ThreadPool
 - Thread creation time can be saved
@@ -183,23 +189,36 @@ In ThreadPool
 - Increased the performance as threads are reused due to less number of thread creation and less context switch (In this cpu does less performance due to idle)
 
 
-=> ThreadPool Executor
-public ThreadPoolExecutor(int corePoolSize,
-int maximumPoolSize,
-long keepAliveTime,
-TimeUnit unit,
-BlockingQueue<Runnable> workQueue,
-ThreadFactory threadFactory,
-RejectedExecutionHandler handler)
-Parameters:
+JAVA FrameWork which helps to create thread pool [package java.util.concurrent] 
+=> ThreadPool Executor [It helps to create customizable ThreadPool]
+    public ThreadPoolExecutor(int corePoolSize,
+    int maximumPoolSize,
+    long keepAliveTime,
+    TimeUnit unit,
+    BlockingQueue<Runnable> workQueue,
+    ThreadFactory threadFactory,
+    RejectedExecutionHandler handler)
+    Parameters:
 corePoolSize - number of threads  are initially created and keep in the pool, even if they are idle.
 
 maximumPoolSize - the maximum number of threads to allow in the pool. If number of thread are == corePoolSize and queue is also full then new threads are created (till its les than 'maxPoolSize')
 Excess Thread, will remain in pool, this is not shutdown or if allowCoreThreadTimeOut set to true, then excess thread get terminated after remain idle for KeepAliveTime
 
-keepAliveTime - Thread, which are idle get terminated after this time. [By default it is false]
+allowcoreThreadTimeOut - [EXPLICITLY we have to set this in object to make keepAliveTime considerable]
+If this property is set to TRUE (by default its false), idle thread kept Alive till time specified by 'keepAliveTime'
+
+keepAliveTime - Thread, which are idle get terminated after this time. 
+Ex:- 5 sec then after 5 sec thread would be terminated if thread was idle
+
 
 unit - time unit for the keepAliveTime, whether Millisecond or Second or Hours etc.
+
+maxPoolSize: [V V V V IMPORTANT]
+Maximum number of thread allowed in a pool.
+If no of thread are == corePoolSize and queue is also full, then new threads are created (till its less than 'maxPoolSize')
+
+Excess thread, will remain in pool, this pool is not shutdown or if allowCoreThreadTimeOut 
+set to true, then excess thread get terminated after remain idle for KeepAliveTime.
 
 workQueue/Blocking queue - Queue used to hold task, before they got picked by the worker thread.
 - > Bounded Queue : Queue with FIXED capacity.
@@ -214,3 +233,17 @@ threadFactory - factory for creating new Thread. ThreadPoolExecutor use this to 
 
 handler - handler for tasks than can not be accepted by thread pool.
 Generally logging logic can be put here. For debugging purpose 
+        - new ThreadPoolExecutor.AbortPolicy
+              - Throws RejectedExecutionException
+        - new ThreadPoolExecutor.callerRunsPolicy
+              - Executed the rejected task in the caller thread ( thread that attempted to submit the task)
+        - new ThreadPoolExecutor.DiscardPolicy
+              - Discard the oldest task in the queue, to accomodate new task.
+
+
+        *******************************[Future, callable and CompletableFuture]*******************************
+
+     In ThreadPoolExecutor we are submitting the task but we don't know the exact status of submitted task 
+     so, to know about that we have to use future
+     
+      

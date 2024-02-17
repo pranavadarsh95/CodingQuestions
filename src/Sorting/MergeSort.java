@@ -1,5 +1,8 @@
 package Sorting;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MergeSort {
 
 
@@ -49,13 +52,44 @@ public class MergeSort {
         }
     }
 
+    private static void mergeSort(int[] a, int start, int mid, int end) {
+        List<Integer> list = new ArrayList<>();
+        int x = start;
+        int y = mid+1;
+
+        while(x <= mid && y <=end){
+            if(a[x] < a[y]){
+                list.add(a[x++]);
+            } else if (a[x] > a[y]) {
+                list.add(a[y++]);
+            } else{
+                list.add(a[x++]);
+                list.add(a[y++]);
+            }
+        }
+
+        while(x <= mid){
+            list.add(a[x++]);
+        }
+
+        while(y <= end){
+            list.add(a[y++]);
+        }
+
+        for(int i = start ; i<=end ; i++){
+            a[i] = list.get(i-start);
+        }
+    }
+
     static void merge(int[] a,int x,int y){
         if(x<y){
             int mid = x+(y-x)/2;
 
             merge(a,x,mid);
             merge(a,mid+1,y);
-            mergefun(a,x,mid,y);
+//            mergefun(a,x,mid,y);  using Array
+//    using linkedlist
+            mergeSort(a, x, mid, y);
         }
     }
 

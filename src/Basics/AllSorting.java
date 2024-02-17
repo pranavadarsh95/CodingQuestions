@@ -48,8 +48,8 @@ public class AllSorting {
                 swap(arr, p, q);
             }
         }
-        swap(arr, p+1, r);
-        return p+1;
+        swap(arr, ++p, r);
+        return p;
     }
 
     private static void random(int[] arr, int l, int r) {

@@ -5,7 +5,7 @@ Time Complexity:- https://www.freecodecamp.org/news/big-o-cheat-sheet-time-compl
     O(n log(n)) - Linearithmic time
     O((log(n))c) - Polylogarithmic time
     O(n) - Linear time
-    O(n2) - Quadratic time
+    O(n2) - Quadratic time (comes under Polynomial)
     O(nc) - Polynomial time
     O(cn) - Exponential time
     O(n!) - Factorial time
