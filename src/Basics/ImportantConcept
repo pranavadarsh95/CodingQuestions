@@ -12,10 +12,10 @@ Time Complexity:- https://www.freecodecamp.org/news/big-o-cheat-sheet-time-compl
 
 Note:- Exponential (c^n) >>>> polynomial (n^c)
 
-circuit breaker
+circuit breaker [Below covered]
 java version differences
-where had we deployed our code (AWS cloud EC2)
-multithreading
+where had we deployed our code (AWS cloud EC2) [Below covered]
+multithreading [whole folder is there]
 
 ======================================================================================
 Rate limitter:-
@@ -171,3 +171,57 @@ Arrays.stream(array_name).forEach(a-> Arrays.fill(a,-1));
  That's why StringBuilder is faster than StringBuffer.
 
  ======================================================================================
+ code deployment
+
+     Cloud Services Code Deployment:
+
+         Imagine a City with Services: Think of a city where you have different services like electricity, water, and garbage collection all provided by the city government.
+
+         Cloud Providers are like City Governments: Cloud service providers like Amazon Web Services (AWS), Microsoft Azure, and Google Cloud Platform (GCP) are like these city governments. They offer various services like computing power, storage, and databases that companies can rent and use.
+
+         Code Deployment is like Building a House: When a company wants to deploy its code (like building a house), it can rent space (servers) from these cloud providers and upload its code to run on these rented servers. The cloud provider takes care of managing and maintaining these servers, just like the city government takes care of managing utilities.
+
+         Advantages: It's convenient because companies don't need to worry about buying and maintaining their own servers. They can easily scale up or down based on their needs by renting more or fewer resources from the cloud provider.
+
+     Containerized Environment:
+
+         Think of Shipping Containers: Imagine you have different items to transport, like furniture, electronics, and clothes. Instead of putting them directly in a truck, you pack them into standardized shipping containers.
+
+         Containers are like Standardized Boxes: Containers in the tech world are like these standardized shipping containers. They package up everything your code needs to run, including the code itself, libraries, and other dependencies.
+
+         Containerized Deployment is like Shipping: Deploying code in a container is like shipping these containers to different places. You can easily move them around, whether it's from your laptop to a server or from one cloud provider to another.
+
+         Advantages: Containers provide consistency and flexibility. They ensure that your code runs the same way no matter where it's deployed. They also make it easier to manage and scale your applications because you can run multiple containers on the same server or spread them across multiple servers.
+
+         ======================================================================================
+CIRCUIT BREAKER
+
+Imagine a large e-commerce platform with multiple microservices responsible for different functionalities such as user authentication, product catalog, order processing, and payment processing. Each microservice communicates with others over the network.
+
+Now, let's focus on the payment processing microservice, which interacts with a third-party payment gateway to process transactions. Due to the nature of network communication and external dependencies, there's a possibility that the payment gateway might experience issues such as downtime, latency, or timeouts.
+
+To handle such scenarios and improve the resilience of the system, the payment processing microservice could implement a circuit breaker pattern. Here's how it might work:
+
+    Closed State: Initially, the circuit breaker is in a closed state, allowing requests to be forwarded to the payment gateway as usual.
+
+    Failure Monitoring: The circuit breaker monitors the responses from the payment gateway. If the number of failed requests surpasses a certain threshold within a specified timeframe (e.g., consecutive timeouts or errors), the circuit breaker trips and transitions to an open state.
+
+    Open State: In the open state, the circuit breaker prevents any further requests from being sent to the payment gateway. Instead, it immediately returns a predefined error response or triggers a fallback mechanism, such as using a cached payment method or displaying a friendly error message to the user.
+
+    Timeout and Retry: After a specified timeout period, the circuit breaker transitions to a half-open state. During this time, it allows a limited number of test requests to pass through to the payment gateway to check if it has recovered.
+
+    Closed State (Recovery): If the test requests succeed, indicating that the payment gateway is operational again, the circuit breaker transitions back to the closed state, and normal operation resumes. However, if the test requests continue to fail, the circuit breaker remains open, and the cycle repeats.
+
+By implementing a circuit breaker in the payment processing microservice, the e-commerce platform can prevent cascading failures, improve fault tolerance, and provide a better user experience by gracefully handling issues with the external payment gateway. This ensures that the platform remains operational even when external dependencies encounter problems.
+
+         ======================================================================================
+
+         ======================================================================================
+
+         ======================================================================================
+
+         ======================================================================================
+
+         ======================================================================================
+
+         ======================================================================================
