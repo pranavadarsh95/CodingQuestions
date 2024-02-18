@@ -9,7 +9,7 @@ public class MainClass {
                 TimeUnit.MINUTES, new ArrayBlockingQueue<>(2), new CustomThreadFactory(), new CustomRejectHandler());
 
         // case 1 [2 threads would be put inside Queue]
-     /*   for(int i = 1 ; i<=4; i++){ // here I am submitting 4 tasks submitting
+     /*   for(int i = 1 ; i<=4; i++){ // here I am submitting 4 tasks
             executor.submit(()->{
                 try{
                     Thread.sleep(5000); // 5 sec sleep
@@ -34,7 +34,7 @@ public class MainClass {
         }
         executor.shutdown(); // after every task completed we need to shut down
 */
-        // case 3 [2 Threads are running, 2 Threads are put inside Queue and 3 more threads are coming so, max threads 4 would be created still 1 thread is left so that thread would be rejected]
+        // case 3 [2 Threads are running, 2 Threads are put inside Queue and 3 more threads are coming so, max threads 4 can be created but, still 1 thread is left so that thread would be rejected]
         for(int i = 1 ; i<=7 ; i++){ // here I am submitting 4 tasks submitting
             executor.submit(()->{
                 try{

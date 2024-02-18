@@ -62,10 +62,10 @@ Ex:- text editor (writing, saving, autocorrecting happens all at a time)
 
 Monitor lock -> It applies on object
 Every object has monitor lock and if synchronized keyword based method called or (Synchonized based block method) on same object then as a time only one thread which is associated to object monitor lock can access that.
-whereas other object based thread can access method/block/block based method if monitor lock is free for that other object.
+whereas other object based thread can access method/block based method if monitor lock is free for that other object.
 
 Join:-
--> When Join method is invoked on a thread objet. Current thread will be blocked and waits for the specific thread to finish.
+-> When Join method is invoked on a thread object. Current thread will be blocked and waits for the specific thread to finish.
 
 -> It is helpful when we want to coordinate between threads or to ensure we complete certain task before moving ahead.
 
@@ -201,8 +201,10 @@ JAVA FrameWork which helps to create thread pool [package java.util.concurrent]
     Parameters:
 corePoolSize - number of threads  are initially created and keep in the pool, even if they are idle.
 
-maximumPoolSize - the maximum number of threads to allow in the pool. If number of thread are == corePoolSize and queue is also full then new threads are created (till its les than 'maxPoolSize')
-Excess Thread, will remain in pool, this is not shutdown or if allowCoreThreadTimeOut set to true, then excess thread get terminated after remain idle for KeepAliveTime
+maximumPoolSize - the maximum number of threads to allow in the pool. If number of thread are == corePoolSize and queue is also full
+then new threads are created (till its less than 'maxPoolSize')
+Excess Thread, will remain in pool, this is not shutdown or if allowCoreThreadTimeOut set to true, then excess thread get terminated
+after remain idle for KeepAliveTime
 
 allowcoreThreadTimeOut - [EXPLICITLY we have to set this in object to make keepAliveTime considerable]
 If this property is set to TRUE (by default its false), idle thread kept Alive till time specified by 'keepAliveTime'
@@ -241,9 +243,112 @@ Generally logging logic can be put here. For debugging purpose
               - Discard the oldest task in the queue, to accomodate new task.
 
 
-        *******************************[Future, callable and CompletableFuture]*******************************
+## Future And callable with ExecutorService
 
+     What if caller(i.e main thread) wants to know the status of the thread1, whether its completed or failed etc????? 
+               Then, here comes [completable future]
      In ThreadPoolExecutor we are submitting the task but we don't know the exact status of submitted task 
      so, to know about that we have to use future
+
+
+    Future: 
+    Interface which Represents the result of the Async task.
+    Means, it allow you to check if:
+     computation is complete
+     Get the result
+     Take care of exception if any etc.
+
+ ![img.png](img.png)
      
-      
+  Methods Available in Future Interface
+  1) boolean cancel (boolean mayInterruptIfRunning) [this one is giving command to cancel]
+       - Attempts to cancel the execution of the task.
+       - Returns false, if task can not be cancelled (typically bcoz task already completed);
+         returns true otherwise. 
+  2) boolean isCancelled() [this one is only checking, whether it is completed or not]
+       - Returns true, if task was cancelled before it get completed.
+  3) boolean isDone() 
+       - Returns true if this task completed.
+       - Completion may be due to normal termination, an exception, or cancellation -- in all of these cases, this method will return true.
+     
+   4) V get() [Here, waiting for indefinetly]
+       - wait if required, for the completion of the task.
+       - After task completed, retrieve the result if available.
+   
+   5) V get(long timeout, TimeUnit unit)
+       - wait if required, for at most the given timeout period
+       - Throws 'TimeoutException' if timeout period finished and task is not yet  completed.
+
+   ![img_1.png](img_1.png)
+   ![img_2.png](img_2.png)
+   
+  # callable
+    
+    callable represents the task which need to be executed just like Runnable.
+    But difference is :
+    - Runnable do not have any Return type.
+    - callable has the capability to return the value.
+
+
+  # Runnable Interface Vs Callable Interface
+    
+    @FunctionalInterface
+    public interface Runnable{
+     public abstract void run()
+    }
+
+    @FunctionalInterface
+    public interface Callable<V> {
+     V call() throws Exception
+    }
+
+  When ever we are submitting any task using submit method it accepts using three ways 
+     - submit(Runnable)
+     - submit(Runnable, T)
+     - submit(Callable<T>) 
+  
+  when we do normally 
+ [TYPE 1]
+  Future<?> future = executor.submit( () -> {}); // we are using normal Runnable
+ [TYPE 2] this is almost same as callable but with runnable workaround to acheive callable
+  Future<Integer> future = executor.submit( () -> {
+                                                // anything
+                                                return 30;
+                                                }, Integer); // we are using Runnable, T
+  [TYPE 3] this is runnable case 2 cleaner way
+  Future<Integer> future = executor.submit(() -> {});
+
+
+## CompletableFuture
+ 
+Introduced in Java 8
+To help in Async Programming
+We can considered it as an advanced version of Future
+provides additional capability like chaining
+
+How to use this:
+
+
+1. CompletableFuture.supplyAsync:
+
+   public static<T> CompletableFuture<T> supplyAsync(Supplier<T> supplier) // here we are not passing Executor means 
+    it will use default poolExecutor which is Fork-Join Pool
+
+   public static<T> CompletableFuture<T> supplyAsync(Supplier<T> supplier, Executor executor)
+   
+   - supplyAsync method initiates an Async operation
+   - 'supplier' is executed asynchronously in a separate thread
+   - If we want more control on Threads, we can pass Executor in the method.
+   - By default its uses, shared Fork-Join Pool executor. It dynamically adjust its pool size based on processors.
+   
+![img_3.png](img_3.png)
+
+2. thenApply & thenApplyAsync: [this is a concept of chaining in Completable future]
+   - Apply a function to the result of previous Async computation.
+   - Return a new CompletableFuture object.
+   
+![img_4.png](img_4.png)
+   
+
+
+  
