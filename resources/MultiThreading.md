@@ -320,10 +320,12 @@ Generally logging logic can be put here. For debugging purpose
 
 
 ## CompletableFuture
+
+https://www.callicoder.com/java-8-completablefuture-tutorial/
  
 Introduced in Java 8
 To help in Async Programming
-We can considered it as an advanced version of Future
+We can consider it as an advanced version of Future
 provides additional capability like chaining
 
 How to use this:
@@ -335,20 +337,40 @@ How to use this:
     it will use default poolExecutor which is Fork-Join Pool
 
    public static<T> CompletableFuture<T> supplyAsync(Supplier<T> supplier, Executor executor)
+
+  Note:- supplyAsync has return type is CompletableFuture<T> T=> any type 
    
    - supplyAsync method initiates an Async operation
    - 'supplier' is executed asynchronously in a separate thread
    - If we want more control on Threads, we can pass Executor in the method.
-   - By default its uses, shared Fork-Join Pool executor. It dynamically adjust its pool size based on processors.
+   - By default, its uses, shared Fork-Join Pool executor. It dynamically adjusts its pool size based on processors.
+
+    Note:- when supplyAsync() method would be called, one new thread gets started.
+           like earlier we were creating when used to call submit() method.
+  Q. what is supplier()?
+     - It is similar to Runnable Interface where run method was there to execute thread, 
+       here get() method is inside Supplier Interface (Functional Interface).
    
 ![img_3.png](img_3.png)
 
 2. thenApply & thenApplyAsync: [this is a concept of chaining in Completable future]
    - Apply a function to the result of previous Async computation.
    - Return a new CompletableFuture object.
-   
+   - ThenApply method is a Synchronous execution, It uses same thread which completed the previous Async task.
+   - ThenApplyAsync is a Asynchronous execution, It uses different thread (From 'fork-join' pool, if we do not provide the executor in the completableFuture of this function) 
+   - If Multiple 'thenApplyAsync' is used, ordering can not be guaranteed, they will run concurrently.
 ![img_4.png](img_4.png)
    
+3. thenCompose and thenComposeAsync:
+   
+   - chain together dependent ***Async*** operations.
+   - Means when next ***Async*** operation depends on the result of the previous ***Async*** one.
+     we can tie them together.
+   - For ***Async*** tasks, we can bring some Ordering using this.
 
+4. thenAccept and thenAcceptAsync:
+   - Generally end stage, in the chain of Async operations
+   - It does not return anything
 
-  
+5. thenCombine and thenCombineAsync:
+   - Used to combine the result of 2 Comparable Future
