@@ -10,7 +10,7 @@ Time Complexity:- https://www.freecodecamp.org/news/big-o-cheat-sheet-time-compl
     O(cn) - Exponential time
     O(n!) - Factorial time
 
-Note:- Exponential (c^n) >>>> polynomial (n^c)
+Note:- Exponential (c^n) >>>> polynomial (n^c) 
 
 circuit breaker [Below covered]
 java version differences
@@ -110,7 +110,7 @@ Output: Integer Array on filling: [22, 22, 22, 22, 22]
 
 ======================================================================================
 Store array into 2*size to make it circular array
- for (int i = 0; i < n * 2; i++) {
+ for (int i = 0; i < n * 2; i++) { 
             temp[i] = nums[i % n];
         }
 

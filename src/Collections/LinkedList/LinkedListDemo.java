@@ -1,8 +1,9 @@
-package Collections;
+package Collections.LinkedList;
 
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 
 // Must do :- https://leetcode.com/problems/add-two-numbers/description/
 // Must do :- https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/
@@ -12,7 +13,7 @@ import java.util.LinkedList;
 
 public class LinkedListDemo {
 
-    static void print(LinkedList<Integer> linkedList) {
+     static void print(LinkedList<Integer> linkedList) {
 
         System.out.println("Elements printed using Without Iterator:- ");
 
@@ -51,25 +52,28 @@ public class LinkedListDemo {
 
 
 // Accessing elements
-//        System.out.println(linkedList.get(2));
-//        System.out.println(linkedList.getFirst());
-//        System.out.println(linkedList.getLast());
+        System.out.println(linkedList.get(2));
+        System.out.println(linkedList.getFirst());
+        System.out.println(linkedList.getLast());
 
 
         // add at specific position
-//       linkedList.add(4,89);
-//        print(linkedList);
+       linkedList.add(4,89);
+        print(linkedList);
 
 // SET
-//       linkedList.set(3,900);
-//        print(linkedList);
+       linkedList.set(3,900);
+        print(linkedList);
 
 
 // Removing elements
-//        System.out.println(linkedList.remove(2));
-//        System.out.println(linkedList.removeFirst());
-//        System.out.println(linkedList.removeLast());
-//        print(linkedList);
+        System.out.println(linkedList.remove(2));
+        System.out.println(linkedList.removeFirst());
+        System.out.println(linkedList.removeLast());
+        print(linkedList);
+
+        // remove() = poll() = pollFirst() = removeFirst()
+        // offer() = add() = addLast() = offerLast()
 
         // peek() -> first element of Linkedlist
         // offer() -> add element to the end of linkedlist

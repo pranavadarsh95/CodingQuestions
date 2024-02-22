@@ -42,7 +42,7 @@ public class  ArrayListDemo {
     }
 
     public static void main(String[] args) {
-        //ADD y default ity holds 16 element and when it reaches at 75% (means at 12 it doubles the last value i.e 16*2 = 32)
+        //By default, ArrayList initially holds 10 element space and when 10 elements gets filled then more 50% space gets created i.e. 15 (means at 10 becomes 10+(1/2*10) = 15)
         ArrayList<Integer> arrayList1 = new ArrayList<>(5);
         arrayList1.add(34);
         arrayList1.add(4);
@@ -99,24 +99,25 @@ public class  ArrayListDemo {
 //        arrayofArrayList.printArrayofArrayList();
 
         //ArrayList of ArrayList
-//        ArrayListOfArrayList arrayListOfArrayList = new ArrayListOfArrayList();
-//        arrayListOfArrayList.setArrayListOfArrayList();
-//        arrayListOfArrayList.initialiseArrayListOfArrayList();
+        ArrayListOfArrayList arrayListOfArrayList = new ArrayListOfArrayList();
+        arrayListOfArrayList.setArrayListOfArrayList();
+        arrayListOfArrayList.initialiseArrayListOfArrayList();
 //        arrayListOfArrayList.printArrayListOfArrayList();
+        arrayListOfArrayList.printUsingStream();
     }
 }
 
 
 class ArrayofArrayList {
     int n;
-    ArrayList<Integer> myArrayList[];
+    ArrayList<Integer> myArrayOfArrayList[];
 
     ArrayofArrayList(int n) {
         this.n = n;
     }
 
     void setArrayofArrayList() {
-        myArrayList = new ArrayList[n];
+        myArrayOfArrayList = new ArrayList[n];
 
 //        for (int i = 0; i < n; i++) {
 //            myArrayList[i] = new ArrayList<>();
@@ -126,23 +127,23 @@ class ArrayofArrayList {
 
     void initialiseArrayofArrayList(/*int i, int value*/ /*For Dynamic Initilization*/) {
 //        myArrayList[i] = new ArrayList<>(); // we can also do like this if we would have not defined memory using for loop
-        myArrayList[0].addAll(Arrays.asList(56, 45, 34, 23, 12));
-        myArrayList[1].addAll(Arrays.asList(6, 5, 134, 37, 2));
-        myArrayList[2].addAll(Arrays.asList(572, 95, 374, 293, 892));
+        myArrayOfArrayList[0].addAll(Arrays.asList(56, 45, 34, 23, 12));
+        myArrayOfArrayList[1].addAll(Arrays.asList(6, 5, 134, 37, 2));
+        myArrayOfArrayList[2].addAll(Arrays.asList(572, 95, 374, 293, 892));
 //        myArrayList[i].add(value); // For Dynamic Initilization
     }
 
     ArrayList<Integer>[] getArrayofArrayList() {
-        return myArrayList;
+        return myArrayOfArrayList;
     }
 
     void printArrayofArrayList() {
-        for (int i = 0; i < myArrayList.length; i++) {
+        for (int i = 0; i < myArrayOfArrayList.length; i++) {
 
             System.out.println((i + 1) + " Arraylist elements are as:- ");
 
-            for (int j = 0; j < myArrayList[i].size(); j++) {
-                System.out.print(myArrayList[i].get(j) + " ");
+            for (int j = 0; j < myArrayOfArrayList[i].size(); j++) {
+                System.out.print(myArrayOfArrayList[i].get(j) + " ");
             }
             System.out.println();
         }
@@ -195,7 +196,6 @@ class ArrayListOfArrayList {
 //            System.out.println();
 //        }
 
-
         for (ArrayList<Integer> arrayList : arrayListArrayList) {
 
             System.out.println(" Arraylist elements are as:- ");
@@ -204,5 +204,14 @@ class ArrayListOfArrayList {
             }
             System.out.println();
         }
+    }
+
+    void printUsingStream(){
+        System.out.println("printing using stream");
+        arrayListArrayList.stream()
+                .forEach(innerList -> {
+                    innerList.forEach(element -> System.out.print(element + " "));
+                    System.out.println();
+                });
     }
 }

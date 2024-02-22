@@ -29,7 +29,6 @@ public class MapDemo {
     static void print(Map<Integer, Integer> map) {
 
         System.out.println("Elements printed using Without Iterator:- ");
-
         // print Both Keys and Values
         for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
             System.out.println(entry.getKey() + " " + entry.getValue());

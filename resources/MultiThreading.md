@@ -374,3 +374,82 @@ How to use this:
 
 5. thenCombine and thenCombineAsync:
    - Used to combine the result of 2 Comparable Future
+   
+
+Note:- [ThreadPoolExecutor which we are using is also called custom thread pool Executor]
+
+Executors provides Factory methods which we can use to create Thread Pool Executor. 
+which is present in "Java.util.concurrent" package
+
+ 1) Fixed ThreadPoolExecutor 
+   - newFixedThreadPool method creates a thread pool executor with a fixed no of threads.
+   - Min and Max Pool Size => same
+   - Queue Size => Unbounded Queue
+   - Thread Alive When idle => Yes
+   - when to use => when we have Exact Info like how many threads we need, how many Async task is needed
+   - Disadvantage => Not good when workload is heavy, as it will lead to limited concurrency
+
+   // fixed thread pool Executor 
+      ExecutorService poolExecutor1 = Executors.newFixedThreadPool(5);
+      poolExecutor1.submit( () -> "this is the async task");
+ 
+ 2) cached ThreadPoolExecutor:
+    
+    newCachedThreadPool method creates a thread pool that creates a new thread as Needed (dynamically).
+    - Min and Max Pool => Min 0 Max: Integer.MAX_VALUE
+    - Queue Size = Blocking Queue with Size 0, because when ever any new task comes new thread is creating to handle the task 
+       if existing threads are busy
+    - Thread Alive when idle => 60 Seconds (After 60 sec idle thread gets terminated)
+    - when to use : Good for handling burst of short-lived tasks.
+    - Disadvantage : Many long-lived tasks and submitted rapidly, 
+                     ThreadPool can create so many threads which might lead to increase memory usage.
+
+    // cached thread pool Executor
+    ExecutorService poolExecutor1 = Executors.newCachedThreadPool(5);
+    poolExecutor.submit( () -> "this is the async task");
+
+ 3) Single ThreadPoolExecutor
+ 
+    - 'newSingleThreadExecutor' creates Executor with just single Worker thread.
+    - Min and Max Pool => Min 1 Max: 1
+    - Queue Size = Unblocking Queue
+    - Thread Alive when idle => Yes
+    - when to use : When need to process tasks sequentially
+    - Disadvantage : No concurrency at all
+    
+4) WorkStealing Pool Executor
+ 
+  - It creates a Fork-Join Pool Executor
+  - Number of threads depends upon the Available Processors or we can specify in the parameter.
+
+   There are 2 Queues:
+   - submission Queue
+   - Work-Stealing Queue for each thread (it's a Dequeue)
+
+   Steps:
+    - If all threads are busy, task would be placed in "Submission Queue". (or whenever we call submit() method, tasks goes into submission
+    queue only)
+    - Lets say task1 picked by ThreadA and if 2 subtasks created using fork() method. Subtask1 will be executed by ThreadA only and Subtask2
+      is put into the ThreadA work-stealing queue.
+    - If any other thread becomes free, and there is no task in Submission queue, it can "STEAL" the task from the other thread work-stealing
+      queue.
+ 
+    - Task can be split into multiple small sub-tasks. For that Task should extend:
+        - Recursive Task : if subtask return any value then go for it
+        - RecursiveAction : if subtask doesn't return any value then go for it.
+  
+    - We can create Fork-Join Pool using "newWorkStealingPool" method in ExecutorService. 
+      Or By calling ForkJoinPool.commonPool() method
+
+   Priority for thread to pick any Task:
+     1) check its own work-stealing Queue
+     2) check submission Queue
+     3) can I steal some task from busy thread work-stealing queue, If yes then put in own work-stealing queue and start working on it.
+
+ # shutdown vs await Termination vs shutdownNow
+
+
+
+
+
+ 
