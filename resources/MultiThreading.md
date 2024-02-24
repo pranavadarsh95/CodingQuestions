@@ -447,9 +447,100 @@ which is present in "Java.util.concurrent" package
      3) can I steal some task from busy thread work-stealing queue, If yes then put in own work-stealing queue and start working on it.
 
  # shutdown vs await Termination vs shutdownNow
+   
+    **Shutdown**  
+ 
+   - Initiates orderly shutdown of the ExecutionService.
+   - After calling 'Shutdown', Executor will not accept new task submission.
+   - Already Submitted tasks, will continue to execute.
+
+   ![img_5.png](img_5.png)
+
+   In above example as we are submitting task after initiating shutdown so, we will get exception.
+
+   **AwaitTermination** [It is a just checking, whether executor pool has shut down or not?]
+   - It's an optional functionality. Return true/false.
+   - It is used after calling 'Shutdown' method.
+   - Blocks calling thread for specific timeout period, and wait for ExecutorService shutdown.
+   - Return true, if ExecutorService gets shutdown within specific timeout else false.
+
+   **shutdownNow**
+   - Best effort attempt to stop/interrupt the actively executing tasks
+   - Halt the processing of tasks which are waiting
+   - Return the list of tasks which are awaiting execution.
+   
+   
+ # ScheduledThreadPoolExecutor # (It is a child of threadPoolExecutor)
+
+ - Helps to schedule the tasks 
+               ThreadPoolExecutor ------------> ScheduleThreadPoolExecutor
+ - because this is child of ThreadPoolExecutor all methods of that is also present in 
+   ScheduledThreadPoolExecutor
+ - ScheduledThreadPoolExecutor methods are as  [Difference between Runnable an Callable is Runnable doesn't return any value but callable does]
+               - schedule(Runnable command, long delay, TimeUnit unit) => Schedules a Runnable task  after specific delay.
+                                                                       => only one time task runs.
+               - schedule(Callable<V> callable, long delay, TimeUnit unit) => Schedules a callable task after specific delay.
+                                                                       => only one time task runs.
+               - scheduleAtFixedRate(Runnable command, long initialDelay, long period, Timeunit unit)
+                                                                       => Schedules a runnable task for repeated execution with fixed rate.
+                                                                       => We can use cancel method to stop this repeated task.
+                                                                       => Also, lets say, if thread1 is taking too much time to complete 
+                                                                       the task and next task is ready to run, till previous task will not 
+                                                                       get completed, new task can not be start(it will wait in queue).
+               - scheduleWithFixedDelay(Runnable command, long initialDelay, long delay, TimeUnit unit)
+                                                                       => Schedules a Runnable task
+Repeated execution with      fixed delay (Means next task delay     counter start only after         previous one task complete)
 
 
+# ThreadLocal, Virtual Thread vs Normal Thread #
 
+- ThreadLocal class provide access to Thread-Local variables.
+- This 'Thread-Local' variable hold the value for particular thread
+- Means each thread has its own copy of thread-Local variable.
+- We need only 1 object of ThreadLocal class and each thread can use it to set and get its own Thread-variable.
+ 
+======>[ Remember to clean up, if reusing the thread ]<========
+ex:- If there are 5 tasks and 2 threads in the ThreadPoolExecutor, then only these threads will work on the 5 tasks,
+completing each task one by one. For instance, if thread1 completes task1 and returns it to the thread pool to be assigned
+a new task, it's important to note that each thread has its own thread-local variable. This variable is independent of tasks. 
+Therefore, if thread1's thread-local variable holds a value related to task1, the same value will be visible when another new
+task is assigned. Hence, it's necessary to clean up the thread-local variable before reusing it for another task.
+==================================
 
+# Virtual Thread vs Platform Thread(Normal Thread)
+
+  Moto of Virtual Thread : To get Higher throughput not latency
+  
+ throughput => in 1 sec how much tasks you can complete
+ ex:- if A can complete 10 tasks in 1 sec and B can complete 100 tasks in 1 sec then B throughput is higher than A.
+ latency =>
+
+ Platform Thread (normal Thread) :-
+ Whenever we create a normal thread, the JVM generates a platform thread, and this thread is then created as an OS thread.
+ This means that for each platform thread, one OS thread is created, establishing a one-to-one mapping, essentially an OS 
+ thread with a wrapper Platform thread.
+
+ However, there are disadvantages to this approach:
+ 1) It is slow because every time we submit a Java thread, the platform thread invokes a system call to create an OS thread, 
+   which consumes time.
+ 2) For instance, if a platform thread is waiting for any I/O operation, the associated OS thread also has to wait, 
+   resulting in the wastage of an OS thread.
+
+ Virtual Thread :- [Available after java 19]
+ Whenever we create a virtual thread, the JVM links it to an OS thread (here, a one-to-one mapping does not occur). 
+ For instance, if we have two OS threads and the JVM creates multiple VTs (virtual threads), when a virtual thread needs to run, 
+ it links to an OS thread.
+
+ For example, if a virtual thread waits for an I/O operation, the linking between the virtual thread and the OS thread would be
+ broken, allowing other virtual threads waiting in the queue to utilize the OS thread.
+
+ ![img_6.png](img_6.png)
+
+ How to create virtual thread:- 
+ Thread th1 = Thread.ofVirtual().start(RunnableTask);
+ or
+ ExecutorService myExecutorObj = Executors.newVirtualThreadPerTaskExecutor()
+ myExecutorObj.submit(Runnabletask)
+ 
 
  
