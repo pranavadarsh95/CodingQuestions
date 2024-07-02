@@ -1,15 +1,23 @@
 ==============
 MultiThreading vs Concurrency vs Paralleslism
 
-Multithreading simply means there can be more than one thread running inside a process but not necessarily at the same time, maybe because of a single-core CPU. That means, though the application contains many threads, at a given point, only one thread gets executed by the CPU.
+Multithreading simply means there can be more than one thread running inside a process but not necessarily at the same time,
+maybe because of a single-core CPU. That means, though the application contains many threads, at a given point, only one thread
+gets executed by the CPU.
 
-Whereas Concurrency is all about dealing with multiple threads or tasks at the same time because of the multiple CPU cores — Each core takes care of running one thread. If there are more threads in the application than the available cores then they interleave the CPU cores as per the Thread Scheduler.
+Whereas Concurrency is all about dealing with multiple threads or tasks at the same time because of the multiple CPU cores — Each
+core takes care of running one thread. If there are more threads in the application than the available cores then they interleave
+the CPU cores as per the Thread Scheduler.
 
-Take a four-burner gas stove for example. You can cook 4 items concurrently at the same time. If you have more than four items, you have to deal with the cooking by prioritizing the items to be cooked, in which case you(the master chef) become the ThreadScheduler.
+Take a four-burner gas stove for example. You can cook 4 items concurrently at the same time. If you have more than four items,
+you have to deal with the cooking by prioritizing the items to be cooked, in which case you(the master chef) become the
+ThreadScheduler.
 
 So, in a sense, multithreading is what enables concurrency. Without multithreading, there is no concurrency.
 
-Then what about parallelism? We should not confuse concurrency with parallelism. Parallelism is about doing many sub-tasks of a single task at once whereas concurrency is about dealing with many tasks at the same time. We use parallelism mostly from a processing or computing perspective to achieve some performance.
+Then what about parallelism? We should not confuse concurrency with parallelism. Parallelism is about doing many sub-tasks of a
+single task at once whereas concurrency is about dealing with many tasks at the same time. We use parallelism mostly from a
+processing or computing perspective to achieve some performance.
 ==============
 
 
